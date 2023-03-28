@@ -12,6 +12,7 @@ function motaphoto_style_script(){
 
     wp_enqueue_style('main-style', get_template_directory_uri() . '/assets/css/main-style.css');
     wp_enqueue_style('fonts', get_template_directory_uri() . '/assets/css/fonts.css');
+    wp_enqueue_style('modal', get_template_directory_uri() . '/assets/css/modal.css');
 
     wp_enqueue_script('script', get_template_directory_uri() . '/assets/js/script.js', array(), '1.0', true);
 }
@@ -27,7 +28,15 @@ register_nav_menus( array(
 ));
 
 
+/*  Lien template contact menu  */
 
+function lienTemplateContactMenu( $items, $args ) {
+    $items .= '<li><a href="<?php get_template_part( \'template/modal\' ); ?>"> CONTACT </a></li>';
+    // On retourne le code
+    return $items;
+}
+
+add_filter( 'wp_nav_menu_items', 'lienTemplateContactMenu', 10, 2 );
 
 
 

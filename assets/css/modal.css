@@ -1,0 +1,116 @@
+h2{
+    margin-bottom:30px;
+}
+
+/* popup */
+
+#bg-contact{
+    position:fixed;
+    top:0;
+    left:0;
+    width: 100vw;
+    height: 100vh;
+    background-color:rgba(0, 0, 0, 0.797) ;
+}
+
+#contact{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    margin:auto;
+    box-shadow: 0px 0px 13px 1px rgba(255, 255, 255, 0.707);
+}
+
+#contact img{
+    width: 41vw;
+    padding-bottom: 6vh;
+}
+
+#popup-contact {
+    width: 41vw ; /* 597px */
+    height: auto; /* 759px */
+    position: relative; /* pour le #popup */
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color:white;
+}
+
+/* croix fermeture du popup */
+
+
+
+#popup-close{
+    position: absolute;
+    top: -2%;
+    right: -2.5%;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid black;
+    background-color: white;
+}
+
+#popup-close img{
+    width: 90%;
+    display: block;
+    margin: auto;
+    padding-top: 1px;
+    
+}
+#popup-close:hover{
+    background: rgb(247, 196, 196);
+    transition: 1s;
+}
+
+/* formulaire */
+#popup-contact form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    /* background-color: coral; */
+   
+}
+
+#popup-contact .wpcf7 label{
+    font-family:'Poppins';
+    font-size: 0.96vw; /* 14px */
+   /*  color:blueviolet; */
+}
+
+#popup-contact .wpcf7 input {
+    width: 18vw; /* 263px */
+    height: 2.7; /* 40px */
+    margin-top: 0.13vw; /* 2px */
+    margin-bottom: 1.65vw; /* 24px */
+}
+
+#popup-contact .wpcf7 textarea {
+    width: 18vw; /* 263px */
+    height: 9.8vw; /* 142px */
+   /*  background-color: green; */
+}
+
+#popup-contact input[type="Submit"]{
+    width: 14.7vw; /* 214px */
+    height: 2.6vw; /* 38px */
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 2.4vw; /* 35px */
+    margin-bottom: 0;
+    border:none;
+    border-left: 4px solid black;
+    background-color: transparent;
+    font-size: 0.96vw; /* 14px */
+    font-family: 'Poppins';
+}
+
+#popup-contact input[type="Submit"]:hover{
+    box-shadow: 0px 0px 15px 1px #000000;
+    border-radius: 5px;
+}

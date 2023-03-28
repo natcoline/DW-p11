@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    /*  fermeture menu  */
+    /* fermeture menu */
         console.log('test jQuery')
   
     $('.burger').click(function() {
@@ -8,16 +8,20 @@ $(document).ready(function() {
         $(this).toggleClass('open');
     });
   
-  
-
     
-  
-  
-  
-  
-  
-  
-  
-  
+    /* Fermeture modal */
+    $('#popup-close').click(function(){
+         $('#bg-contact').hide();
+    });
+
+
+
+
 });
+
+  
+  
+  
+  
+  
   
