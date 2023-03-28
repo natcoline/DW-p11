@@ -1,15 +1,22 @@
-    </main>
+</main>
 
-    <footer>
+<footer>
 
-        
+     <?php 
 
-    </footer>
+        wp_nav_menu ([
+        'theme_location' => 'footer',
+        'container' => false,
+        'container_aria_label' => 'menu de navigation du pied de page',
+        ])
+    ?>
 
-    
-   
+</footer>
 
-    <?php wp_footer() ?>
+<?php  get_template_part( 'template/modal' );  ?> 
+
+
+<?php wp_footer() ?>
 
 </body>
 </html>
