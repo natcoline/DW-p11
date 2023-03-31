@@ -13,7 +13,7 @@
 
 </footer>
 
-<?php   ?> <!-- get_template_part( 'template/modal' );  -->
+<?php get_template_part( 'template/modal' ); ?> 
 
 
 <?php wp_footer() ?>

@@ -31,7 +31,9 @@ register_nav_menus( array(
 /*  Lien template contact menu  */
 
 function lienTemplateContactMenu( $items, $args ) {
-    $items .= '<li><a href="<?php get_template_part( \'template/modal\' ); ?>"> CONTACT </a></li>';
+    /* $items .= '<li><a href="<?php get_template_part( \'template/modal\' ); ?>"> CONTACT </a></li>'; */
+    /* $items .= '<li><a href=" '. get_template_part() .' template/modal "> CONTACTER </a> </li>'; */
+    /* $items .= '<li><a href="' . get_template_directory_uri() . '/./template/modal.php" >CONTACTER</a></li>'; */
     // On retourne le code
     return $items;
 }

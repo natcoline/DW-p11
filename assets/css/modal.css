@@ -11,6 +11,7 @@ h2{
     width: 100vw;
     height: 100vh;
     background-color:rgba(0, 0, 0, 0.797) ;
+    display: none; /* pour faire disparaitre le modal en dehors du bouton contact */
 }
 
 #contact{
@@ -39,9 +40,6 @@ h2{
 }
 
 /* croix fermeture du popup */
-
-
-
 #popup-close{
     position: absolute;
     top: -2%;
@@ -92,7 +90,6 @@ h2{
 #popup-contact .wpcf7 textarea {
     width: 18vw; /* 263px */
     height: 9.8vw; /* 142px */
-   /*  background-color: green; */
 }
 
 #popup-contact input[type="Submit"]{
