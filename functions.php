@@ -14,6 +14,7 @@ function motaphoto_style_script(){
     wp_enqueue_style('fonts', get_template_directory_uri() . '/assets/css/fonts.css');
     wp_enqueue_style('modal', get_template_directory_uri() . '/assets/css/modal.css');
     wp_enqueue_style('single', get_template_directory_uri() . '/assets/css/single.css');
+    wp_enqueue_style('page', get_template_directory_uri() . '/assets/css/page.css');
 
     wp_enqueue_script('script', get_template_directory_uri() . '/assets/js/script.js', array(), '1.0', true);
 }

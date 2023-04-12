@@ -9,3 +9,13 @@
     font-family:'space-mono';
     src: url('../fonts/SpaceMono-Regular.woff') format('woff');
 }
+
+@font-face{
+    font-family:'space-mono-bold';
+    src: url('../fonts/SpaceMono-Bold.woff') format('woff');
+}
+
+@font-face{
+    font-family:'space-mono-bold-italic';
+    src: url('../fonts/SpaceMono-BoldItalic.woff') format('woff');
+}

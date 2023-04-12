@@ -1,0 +1,88 @@
+#hero{
+    width: 100%;
+    height: 100vh;
+   /*  background-color: blue; */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#hero img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+   /*  z-index: -1; */
+}
+
+#hero h1{
+    position: absolute;
+    font-family:'space-mono-bold-italic';
+    font-size: 6.6vw; /* 96px */
+    -webkit-text-stroke: 2px #fff; /* pour une compatibilité avec les navigateurs webkit */
+    color: transparent;
+}
+
+#container{
+    width: 100vw;
+    height: auto;
+    padding: 5vh 9.8vw 20.41vh 9.8vw;
+   /*  background-color: brown; */
+}
+
+#filter{
+    width: 100%;
+    height: 5vw;
+    display: flex;
+   /*  background-color: blueviolet; */
+}
+
+#left_filter{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+   /*  background-color: bisque; */
+}
+
+#category_filter{
+    padding-right: 14.23vw;
+}
+
+#right_filter{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    /* background-color:greenyellow; */
+}
+
+.d-flex-row{
+    display:flex;
+    justify-content: space-between;
+    margin-top: 2.13vw;
+}
+
+.container_photo{
+    height: 34vw; /*  495px */
+    width: 39vw;   /* 564px */
+    background-color: coral;
+}
+#button_page_accueil{
+    width: 100%;
+    height: 19vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+#button_chargez_plus{
+    width: 8.25vw;
+    height: 5.1vh;
+    background-color: #D8D8D8;
+    font-size: 0.82vw;
+    font-family:'space-mono';
+    border-radius:2px;
+    border:none;
+
+}

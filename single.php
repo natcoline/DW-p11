@@ -25,14 +25,17 @@ get_header() ?>
 
         $nextPost = get_next_post();
     $previousPost = get_previous_post();
+
         $nextImg = [$nextPost->post_content]; /* récupération de l'image du post suivant */
-    $previousImg = [$previousPost->post_content]; /* récupération de l'image du post précédent */
+    $previousImg = $previousPost->post_content; /* récupération de l'image du post précédent */
         $nextPageURL = [$nextPost->guid]; /* récupération de l'url du post suivant */
     $previousPageURL = [$previousPost->guid]; /* récupération de l'url du post précédent */
-        $nextPostID = [$nextPost->ID]; /* récupération de l'id du post suivant */
+       
+        $nextPostID = $nextPost->ID; /* récupération de l'id du post suivant */
     $previousPostID = $previousPost->ID; /* récupération de l'ID du post précédent */
 
- 
+    $counter=0;
+    
     /* var_dump($nextPostID); */
 
    /*  var_dump($previousPost); */
@@ -82,25 +85,51 @@ get_header() ?>
             <!-- contact -->
             <div class="d-flex-row" id="button_contact_photo">
                 <p> Cette photo vous intéresse ? </p>
-                <button type="button" class="lien-contact" id="contactRef"> Contact </button>
+                <button class='button_single' type="button" class="lien-contact" id="contactRef"> Contact </button>
             </div>
 
             <!-- navigation -->
             <div id="container_navigation_column"> 
-            
+
+            <?php 
+               /*  $args = array( 
+                    'post_type' => 'photo',
+                    'posts_per_page' => 1,
+                    'orderby' => 'post_date',
+                    'order' => 'DESC'
+                );
+                $mesPhotos = new WP_Query($args);  */
+
+            ?>
            
-                <!-- image -->
-                <div id="container_image_navigation"> 
-                    <?php echo get_the_post_thumbnail ($nextPost->ID, 'medium', ['class'=>"image_navigation"])?>
-                </div>
-                <!-- flèche -->
-                <div class="d-flex-row" id="arrows">
-                   <a href="<?php echo get_permalink($nextPost->ID)  ?>">  <img src="<?php echo get_template_directory_uri() .'/assets/images/arrow_left.svg';?>" alt="flèche direction gauche"> </a>
-                   <a href="<?php echo get_permalink($previousPost->ID) ?>"> <img src="<?php echo get_template_directory_uri() .'/assets/images/arrow_right.svg';?>" alt="flèche direction droite"> </a>    
-                </div>
+                <?php  ?> <!-- if($mesPhotos-> have_posts() ) : while( $mesPhotos-> have_posts() ) : $mesPhotos-> the_post(); -->
+               
+
+                    <!-- image -->
+                    <div id="container_image_navigation"> 
+                        <?php echo get_the_post_thumbnail ($previousPostID , 'medium', ['class'=>"image_navigation"])?>
+                    </div>
+                    <!-- flèche -->
+                    <div class="d-flex-row" id="arrows">
+                    
+                    <?php  
+                        $count_post_type = wp_count_posts('photo');
+                        $total_post_type = $count_posts->publish;
+
+                    ?>
+                        
+                    <a href="<?php echo get_permalink($nextPost->ID)  ?>">  <img src="<?php echo get_template_directory_uri() .'/assets/images/arrow_left.svg';?>" alt="flèche direction gauche"> </a>
+                    <a href="<?php echo get_permalink($previousPost->ID) ?>"> <img src="<?php echo get_template_directory_uri() .'/assets/images/arrow_right.svg';?>" alt="flèche direction droite"> </a>    
+                   
+                    </div>
+
+                    <?php  ?> <!-- wp_reset_postdata(); -->
+                <?php ?><!--  endwhile; endif  -->
+                
+               
             </div>
         </div> <!-- fin partie milieu -->
-
+        
 
         <!-- partie bas -->
         <h2> VOUS AIMEREZ AUSSI</h2>
@@ -130,16 +159,17 @@ get_header() ?>
             
             endwhile;
             endif;
-
+            
             // Réinitialisation de la requête 
             wp_reset_postdata();
+
         ?> 
            
         
         </div>
         
         <div id="container_button_all_photo">
-            <button type="button" onclick="window.location.href='#"> Toutes les photos </button> 
+            <button class='button_single' type="button" onclick="window.location.href='#"> Toutes les photos </button> 
         </div>
 
 
@@ -147,6 +177,9 @@ get_header() ?>
     </div> <!-- fin div container_fiche_photo -->
 
     <?php endwhile; endif ?> 
+
+
+
 
 <?php get_footer() ?>
 
