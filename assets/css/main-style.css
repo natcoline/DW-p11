@@ -17,7 +17,7 @@ body{
 
 header {
   width: 100%;
-  height: 12vh; /* 80px */
+  height: 4.54vw; /* 80px */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -80,18 +80,19 @@ footer ul{
 footer li{
   list-style-type: none;
   padding: 2vh 3vw;
-
 }
 
 footer li a {
   text-decoration: none;
   font-family:'SpaceMono';
   font-size: 1.1vw; /* 16px */
-  color: black;
-
- 
+  color: black; 
 }
 
+.All-rights-reserved{
+  text-decoration: none;
+  pointer-events: none;
+}
 
 
 /* Media Queries */
