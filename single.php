@@ -91,42 +91,30 @@ get_header() ?>
             <!-- navigation -->
             <div id="container_navigation_column"> 
 
+
             <?php 
-               /*  $args = array( 
+                $args = array( 
                     'post_type' => 'photo',
                     'posts_per_page' => 1,
-                    'orderby' => 'post_date',
-                    'order' => 'DESC'
                 );
-                $mesPhotos = new WP_Query($args);  */
 
-            ?>
-           
-                <?php  ?> <!-- if($mesPhotos-> have_posts() ) : while( $mesPhotos-> have_posts() ) : $mesPhotos-> the_post(); -->
-               
+                $mesPhotos = new WP_Query($args);
 
-                    <!-- image -->
-                    <div id="container_image_navigation"> 
+                if ($mesPhotos->have_posts()) : while ($mesPhotos->have_posts()) : $mesPhotos->the_post(); ?>
+                     <!-- image -->
+                     <div id="container_image_navigation"> 
                         <?php echo get_the_post_thumbnail ($previousPostID , 'medium', ['class'=>"image_navigation"])?>
                     </div>
                     <!-- flèche -->
                     <div class="d-flex-row" id="arrows">
-                    
-                    <?php  
-                        $count_post_type = wp_count_posts('photo');
-                        $total_post_type = $count_posts->publish;
-
-                    ?>
                         
                     <a href="<?php echo get_permalink($nextPost->ID)  ?>">  <img src="<?php echo get_template_directory_uri() .'/assets/images/arrow_left.svg';?>" alt="flèche direction gauche"> </a>
                     <a href="<?php echo get_permalink($previousPost->ID) ?>"> <img src="<?php echo get_template_directory_uri() .'/assets/images/arrow_right.svg';?>" alt="flèche direction droite"> </a>    
                    
                     </div>
+                <?php endwhile; endif; ?>
 
-                    <?php  ?> <!-- wp_reset_postdata(); -->
-                <?php ?><!--  endwhile; endif  -->
-                
-               
+                <?php $mesPhotos->rewind_posts(); ?>
             </div>
         </div> <!-- fin partie milieu -->
         
@@ -147,7 +135,6 @@ get_header() ?>
                 'post__not_in' => array($id),
             );
            
-
             // On éxécute la WP query
             $query = new WP_query($imageSimilaire); 
             
