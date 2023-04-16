@@ -5,15 +5,18 @@ $(document).ready(function() {
         $('nav').toggleClass('show');
         $(this).toggleClass('open');
     });
-  
+ 
+    
+    
     /* Modal rattaché au footer, pour qu'il soit disponible partout sur le site
     Par conséquent, il faut le cacher pour qu'il soit disponible uniquement pour le bouton contact */ 
     $('#bg-contact').hide(); 
 
     /* Ouverture modal sur le bouton contact*/
-     $('.lien-contact').click(function(){
+     $('.modal-lien-contact').click(function(){
         $('#bg-contact').show();
     });
+
 
     /* Fermeture modal */
     $('#popup-close').click(function(){
@@ -38,18 +41,16 @@ $(document).ready(function() {
 
     /* Précharger le formulaire avec la référence de la photo selectionnée */
     
-   
-   /* $('input[name="ref-photo"]').val('$reference'); */
-    /* $('input[name="ref-photo"]').val('.valeurRef');  */ 
-   /* $('input[name="ref-photo"]').val("<?php echo get_field('reference'); ?>");   */ 
-    /* $('input[name="ref-photo"]').val("<?php echo ('$reference'); ?>");  */  
 
-    $('#contactRef').click(function(){
-        $('input[name="ref-photo"]').val('.valeurRef').text();   
+    $('#button_contact_photo').click(function(){
+        $ref = $('.valeurRef').text();
+        /* console.log($ref);
+        console.log('coucou'); */
+        $('input[name="ref-photo"]').val($ref);   
+
     });
 
-  /*  console.log($('input[name="ref-photo"]')); */
-  /* console.log($reference); */
+ 
 
 
 });

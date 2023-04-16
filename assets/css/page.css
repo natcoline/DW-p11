@@ -23,13 +23,15 @@
     color: transparent;
 }
 
-#container{
+/* container filter et photo */
+#container_filter_photo {
     width: 100vw;
     height: auto;
     padding: 5vh 9.8vw 20.41vh 9.8vw;
    /*  background-color: brown; */
 }
 
+/* les filtres  */
 #filter{
     width: 100%;
     height: 5vw;
@@ -58,18 +60,24 @@
     /* background-color:greenyellow; */
 }
 
-.d-flex-row{
-    display:flex;
-    justify-content: space-between;
-    margin-top: 2.13vw;
+/*  les photo */
+#grillePhoto{
+    width: 100%;
+    height: auto;
+    padding-top: 6vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
 }
 
-.container_photo{
+.photo_taille_accueil{
     height: 34vw; /*  495px */
     width: 39vw;   /* 564px */
-    background-color: coral;
+    object-fit: cover;
 }
-#button_page_accueil{
+
+
+#container_button_chargez_plus{
     width: 100%;
     height: 19vh;
     display:flex;
@@ -84,5 +92,15 @@
     font-family:'space-mono';
     border-radius:2px;
     border:none;
+    cursor: pointer;
 
+}
+
+
+@media screen and (max-width: 768px){
+    #grillePhoto{
+
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }    
 }
