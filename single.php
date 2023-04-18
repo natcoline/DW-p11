@@ -126,7 +126,6 @@ get_header() ?>
         <div id="container_similar">
 
             <?php  
-
                     // on définit les arguments que l'on souhaite récupérer
                     $imageSimilaire = array(
                         'post_type' => 'photo',
@@ -150,10 +149,8 @@ get_header() ?>
                     
                     // Réinitialisation de la requête 
                     wp_reset_postdata();
-
             ?> 
            
-        
         </div>
         
         <div id="container_button_all_photo">

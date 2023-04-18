@@ -74,6 +74,7 @@
     height: 34vw; /*  495px */
     width: 39vw;   /* 564px */
     object-fit: cover;
+    position: relative; /* pour le hover en before et after*/
 }
 
 
@@ -99,7 +100,6 @@
 
 @media screen and (max-width: 768px){
     #grillePhoto{
-
         grid-template-columns: 1fr;
         justify-items: center;
     }    

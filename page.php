@@ -1,25 +1,61 @@
 <?php get_header() ?>
 
-    <div id="hero">
-        <img src="<?php echo get_template_directory_uri() .'/assets/images/danse_de_quartier.webp';?>" alt="image d'accueil du site Nathalie Mota"></a>
-        <h1> PHOTOGRAPHE EVENT</h1>
-    </div>
+            <?php 
+
+                $random_photo = array(
+                    'post-type' => 'photo',
+                    'orderby' => 'rand',
+                    'posts_per_page' => 1,
+                    'tax_query' => array(
+                        array(
+                            'taxonomy' => 'format',
+                            'field' => 'slug',
+                            'terms' =>'paysage',
+                        ),
+                    ),
+                );
+
+                // On éxécute la WP query 
+                    $wp_query_ramdom_photo = new WP_query($random_photo);
+
+                    // On lance la boucle 
+                    if( $wp_query_ramdom_photo -> have_posts() ) : while( $wp_query_ramdom_photo -> have_posts() ) : $wp_query_ramdom_photo -> the_post(); ?>
+
+                        <div id="hero">
+                            <?php the_post_thumbnail('full'); ?>
+                            <h1> PHOTOGRAPHE EVENT</h1>
+                        </div> 
+                    
+               <?php endwhile;
+                endif;
+
+                // Réinitialisation de la requête 
+                wp_reset_postdata();
+            ?>
+
 
     <div id="container_filter_photo">
 
         <!-- section filter -->
         <section id="filter">
+
+
+                
             <div id="left_filter">
                 <!-- Catégorie -->
                 <div id="category_filter"> 
                     <p>CATÉGORIES</p>
-                    <select name="" id=""> </select>
+                    <select name="" id="">
+                        <option value=""> </option>
+                    </select>
                 </div>    
 
                 <!-- Format -->
                 <div> 
                     <p>FORMATS</p>
-                    <select name="" id=""> </select>
+                    <select name="" id="">
+                        <option value=""> </option>
+                    </select>
                 </div>
             </div> <!-- end left_filter -->
 
@@ -27,7 +63,9 @@
                 <!-- trier par  -->
                 <div> 
                     <p>TRIER PAR</p>
-                    <select name="" id=""> </select>
+                    <select name="" id="">
+                        <option value=""> </option>
+                    </select>
                 </div>
             </div> <!-- end right_filter -->
         </section>
@@ -54,7 +92,6 @@
                     <a href="<?php echo get_permalink() ?>">
                          <?php the_post_thumbnail('medium', ['class' =>'photo_taille_accueil']); ?>
                     </a>
-                    
                <?php endwhile;
                 endif;
 
