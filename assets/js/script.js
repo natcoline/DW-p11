@@ -6,7 +6,13 @@ $(document).ready(function() {
         $(this).toggleClass('open');
     });
  
-    
+    /* plein écran  */
+   /*  $('#container_lightbox').hide(); */
+
+    /* ouverture lightbox */
+   /*  $('.icon_fullscreen').click(function(){
+        $('#container_lightbox').css('opacity','1');
+    }); */
     
     /* Modal rattaché au footer, pour qu'il soit disponible partout sur le site
     Par conséquent, il faut le cacher pour qu'il soit disponible uniquement pour le bouton contact */ 
@@ -37,11 +43,8 @@ $(document).ready(function() {
 
      });
 
-            
-
     /* Précharger le formulaire avec la référence de la photo selectionnée */
     
-
     $('#button_contact_photo').click(function(){
         $ref = $('.valeurRef').text();
         /* console.log($ref);
@@ -50,10 +53,77 @@ $(document).ready(function() {
 
     });
 
- 
+
+    /* AJAX load more */
+
+    let currentPage = 1;
+
+    $('#button_chargez_plus').on('click', function(){
+        currentPage++;
+
+        $.ajax({
+            type: 'POST',
+            url: '/motaphoto/wp-admin/admin-ajax.php',
+            dataType:'html',
+            data: {
+                action: 'load_more',  /* récupérer format et catégorie */
+                paged: currentPage,
+            },
+            success:function (resultat){
+                $('#grillePhoto').append(resultat);
+            }
+        });
+
+    });
 
 
-});
+    /*  AJAX filtre categorie  */
+
+    $("#select_categorie").on("change", function (e) {
+        /* console.log(e.target.value); */
+
+      $.ajax({
+        type: "POST",
+        url: "/motaphoto/wp-admin/admin-ajax.php",
+        dataType: "html",
+        data: {
+            action: "filter_by_categorie",
+            categorie: e.target.value,
+        },
+        success: function (resultat) {
+          $("#grillePhoto").html(resultat);
+        },
+
+      });
+    });
+
+
+    /* AJAX filtre format */
+
+    $("#select_format").on("change", function (e) {
+        /* console.log(e.target.value); */
+
+      $.ajax({
+        type: "POST",
+        url: "/motaphoto/wp-admin/admin-ajax.php",
+        dataType: "html",
+        data: {
+            action: "filter_by_format",
+            format: e.target.value,
+        },
+        success: function (resultat) {
+          $("#grillePhoto").html(resultat);
+        },
+
+      });
+    });
+
+    
+
+
+    
+
+}); /* fin jquery ready */
 
   
   

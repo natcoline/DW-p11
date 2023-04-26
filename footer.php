@@ -3,7 +3,6 @@
 <footer>
 
      <?php 
-
         wp_nav_menu ([
         'theme_location' => 'footer',
         'container' => false,
@@ -13,7 +12,12 @@
 
 </footer>
 
-<?php get_template_part( 'template/modal' ); ?> 
+<?php 
+    get_template_part('template/modal');
+
+    get_template_part('template/lightbox');
+ ?> 
+
 
 
 <?php wp_footer() ?>

@@ -20,7 +20,7 @@ get_header() ?>
     $photo = get_field('upload');
     $reference = get_field('reference'); /* 
     /* Taxonomie */
-    $categorie = get_field('categorie');
+    $categorie = get_field('categorie'); 
     $format = get_field('format');
    
 
@@ -30,19 +30,15 @@ get_header() ?>
     $nextPost = get_next_post();
     $previousPost = get_previous_post();
 
-
+    echo '<pre>';
     /* var_dump($nextPostID); */
-
-   /*  var_dump($previousPost); */
-   /*  var_dump($nextPost); */
+    /* var_dump($previousPost); */
+    /* var_dump($nextPost); */
     /* var_dump($format); */
-    /* var_dump($type); */
+    /* var_dump($type);*/
     /* var_dump($categorie); */
     /* var_dump($reference); */
     /* console.log($reference); */
-
-    echo '<pre>';
-    /* var_dump($nextPost); */ 
     echo '</pre>';
 
     ?>
@@ -67,12 +63,10 @@ get_header() ?>
             </div>
 
             <!-- Partie de droite -->
-            <div id="visuel">
-                
-                <img id ='photo-single-taille' src="<?php the_post_thumbnail_url('large'); ?>" alt="<?php the_title_attribute(); ?>">
-  
+            <div id="visuel" class="hover_icon_fullscreen">
+                <img id ="photo_single_visuel"  src="<?php the_post_thumbnail_url('large'); ?>" alt="<?php the_title_attribute(); ?>">
             </div>
-        </div> <!-- fin d-flex-row -->
+        </div> <!-- fin description_photo -->
 
         <!-- partie milieu -->
         <div id="contact_navigation">
@@ -89,10 +83,8 @@ get_header() ?>
                 <?php 
                     $args = array( 
                         'post_type' => 'photo',
-                        'posts_per_page' => 1,
+                        'posts_per_page' => 2,
                     );
-
-                    $mesPhotos = new WP_Query($args);
 
                 ?>
                      <!-- image -->
@@ -101,16 +93,13 @@ get_header() ?>
                     </div>
                     <!-- flèche -->
                     <div id="arrows">
+
                         <?php if (!empty($previousPost)){ ?>
-                        <a href="<?php echo get_permalink($previousPost->ID) ?>"> 
-                            <img src="<?php echo get_template_directory_uri() .'/assets/images/arrow_left.svg';?>" alt="flèche direction gauche"> 
-                        </a>
+                        <a href="<?php echo get_permalink($previousPost->ID) ?>"><img src="<?php echo get_template_directory_uri() .'/assets/images/arrow_left.svg';?>" alt="flèche direction gauche"></a>
                         <?php } ?>
 
                         <?php if (!empty($nextPost)){ ?>
-                            <a href="<?php echo get_permalink($nextPost->ID) ?>"> 
-                                <img src="<?php echo get_template_directory_uri() .'/assets/images/arrow_right.svg';?>" alt="flèche direction droite"> 
-                            </a>   
+                            <a href="<?php echo get_permalink($nextPost->ID) ?>"><img src="<?php echo get_template_directory_uri() .'/assets/images/arrow_right.svg';?>" alt="flèche direction droite"></a>   
                         <?php } ?>
                     </div>
                
@@ -123,7 +112,7 @@ get_header() ?>
         <!-- partie bas -->
         <h2> VOUS AIMEREZ AUSSI</h2>
     
-        <div id="container_similar">
+        <div id="container_part_similar">
 
             <?php  
                     // on définit les arguments que l'on souhaite récupérer
@@ -139,12 +128,17 @@ get_header() ?>
                     $query = new WP_query($imageSimilaire); 
                     
                     // On lance la boucle 
-                    if( $query -> have_posts() ) : while( $query -> have_posts() ) : $query -> the_post();
-                
-                        /* the_post_thumbnail() ; */
-                        the_post_thumbnail('medium', ['class' =>'photo-similar']); 
+                    if( $query -> have_posts() ) : while( $query -> have_posts() ) : $query -> the_post(); ?>
+            
+
+                        <a class="" href="<?php echo get_permalink() ?>">
+                            <div id ="container_photo_similar" class="hover_icon_fullscreen">
+                                <img id ="photo_similar" src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title_attribute(); ?>">
+                            </div>
+                        </a>
+                        
                     
-                    endwhile;
+                   <?php endwhile;
                     endif;
                     
                     // Réinitialisation de la requête 
