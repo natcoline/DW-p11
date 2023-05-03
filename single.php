@@ -63,8 +63,11 @@ get_header() ?>
             </div>
 
             <!-- Partie de droite -->
-            <div id="visuel" class="hover_icon_fullscreen">
+            <div id="visuel">
                 <img id ="photo_single_visuel"  src="<?php the_post_thumbnail_url('large'); ?>" alt="<?php the_title_attribute(); ?>">
+                <div class="hover_elements">
+                    <img class="icon_fullscreen hover_icon_fullscreen" src="<?php echo get_template_directory_uri() .'/assets/images/icon_fullscreen.svg';?>" alt="icône plein écran"> 
+                </div>
             </div>
         </div> <!-- fin description_photo -->
 
@@ -85,7 +88,6 @@ get_header() ?>
                         'post_type' => 'photo',
                         'posts_per_page' => 2,
                     );
-
                 ?>
                      <!-- image -->
                      <div id="container_image_navigation"> 
@@ -95,7 +97,7 @@ get_header() ?>
                     <div id="arrows">
 
                         <?php if (!empty($previousPost)){ ?>
-                        <a href="<?php echo get_permalink($previousPost->ID) ?>"><img src="<?php echo get_template_directory_uri() .'/assets/images/arrow_left.svg';?>" alt="flèche direction gauche"></a>
+                            <a href="<?php echo get_permalink($previousPost->ID) ?>"><img src="<?php echo get_template_directory_uri() .'/assets/images/arrow_left.svg';?>" alt="flèche direction gauche"></a>
                         <?php } ?>
 
                         <?php if (!empty($nextPost)){ ?>
@@ -115,27 +117,31 @@ get_header() ?>
         <div id="container_part_similar">
 
             <?php  
-                    // on définit les arguments que l'on souhaite récupérer
-                    $imageSimilaire = array(
-                        'post_type' => 'photo',
-                        'posts_per_page' => 2,
-                        'meta_key' => 'categorie',
-                        'meta_value' => $categorie,
-                        'post__not_in' => array($id),
-                    );
-                
-                    // On éxécute la WP query
-                    $query = new WP_query($imageSimilaire); 
-                    
-                    // On lance la boucle 
-                    if( $query -> have_posts() ) : while( $query -> have_posts() ) : $query -> the_post(); ?>
+                // on définit les arguments que l'on souhaite récupérer
+                $imageSimilaire = array(
+                    'post_type' => 'photo',
+                    'posts_per_page' => 2,
+                    'meta_key' => 'categorie',
+                    'meta_value' => $categorie,
+                    'post__not_in' => array($id),
+                );
             
+                // On éxécute la WP query
+                $query = new WP_query($imageSimilaire); 
+                
+                // On lance la boucle 
+                if( $query -> have_posts() ) : while( $query -> have_posts() ) : $query -> the_post(); ?>
+        
 
-                        <a class="" href="<?php echo get_permalink() ?>">
-                            <div id ="container_photo_similar" class="hover_icon_fullscreen">
-                                <img id ="photo_similar" src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title_attribute(); ?>">
-                            </div>
-                        </a>
+                    <div class ="container_photo_similar" >
+                        <img class ="photo_similar" src="<?php $photo = the_post_thumbnail_url("large"); /* var_dump($photo) */;?>" alt="<?php the_title_attribute(); ?>">
+                        <div class="hover_elements">
+                            <img class="icon_fullscreen hover_icon_fullscreen" src="<?php echo get_template_directory_uri() .'/assets/images/icon_fullscreen.svg';?>" alt="icône plein écran"> 
+                            <a href="<?php echo get_permalink() ?>"><img class="hover_icon_eye"  src="<?php echo get_template_directory_uri() .'/assets/images/icon_eye.svg';?>" alt="icône oeil"> </a>
+                            <h2> <?php echo get_field('nom') ?> </h2>
+                            <h3><?php echo get_field('categorie') ?></h3>
+                        </div> <!-- fin hover_elements -->  
+                    </div> <!-- fin container_photo_accueil -->
                         
                     
                    <?php endwhile;

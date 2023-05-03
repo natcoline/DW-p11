@@ -36,7 +36,7 @@
     width: 100%;
     height: 5vw;
     display: flex;
-   /*  background-color: blueviolet; */
+    /* background-color: blueviolet; */
 }
 
 #left_filter{
@@ -71,13 +71,13 @@
 }
 
 
-#container_photo_accueil {
+.container_photo_accueil {
     height: 34vw; /*  495px */
     width: 39vw;   /* 564px */
     position: relative; /* elements hover sur photo */
 }
 
-#photo_accueil {
+.photo_accueil {
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -85,7 +85,7 @@
 
 /* hover elements photo */
 
-#hover_elements {
+.hover_elements {
     position: absolute;
     top: 0;
     left: 0;
@@ -94,47 +94,51 @@
     background-color: rgba(0, 0, 0, 0.5);
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
-  }
+}
 
-  #container_photo_accueil:hover #hover_elements {
+.container_photo_accueil:hover .hover_elements {
     opacity: 1;
-  }
+}
 
-  #hover_icon_eye {
+.hover_icon_eye {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
+    width: 4vw;
+    height: 4vw;
+}
 
-  #hover_icon_fullscreen{
+.hover_icon_fullscreen{
     position: absolute;
     top: 20px;
     right: 20px;
-  }
+    width: 4vw;
+    height: 4vw;
+}
 
-  #container_photo_accueil #hover_elements h2 {
+.container_photo_accueil .hover_elements h2 {
     position: absolute;
     bottom: 20px;
     left: 20px;
     font-family:'Space Mono';
-    font-size: 14px;
+    font-size: 0.96vw;
     font-weight: 400;
     text-transform: uppercase;
     color: #fff;
-  }
+}
   
-  #container_photo_accueil #hover_elements h3 {
+.container_photo_accueil .hover_elements h3 {
     font-size: 14px;
     position: absolute;
     bottom: 20px;
     right: 20px;
     font-family:'Space Mono';
-    font-size: 14px;
+    font-size: 0.96vw;
     font-weight: 400;
     text-transform: uppercase;
     color: #fff;
-  }
+}
   
   
   /* bouton bas de page */
@@ -159,12 +163,11 @@
 }
 
 
-
-
-
 @media screen and (max-width: 768px){
     #grillePhoto{
         grid-template-columns: 1fr;
         justify-items: center;
     }    
-}
+
+
+} /* fin medi querie */

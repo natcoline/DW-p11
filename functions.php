@@ -15,7 +15,7 @@ function motaphoto_style_script(){
     wp_enqueue_style('modal', get_template_directory_uri() . '/assets/css/modal.css');
     wp_enqueue_style('single', get_template_directory_uri() . '/assets/css/single.css');
     wp_enqueue_style('page', get_template_directory_uri() . '/assets/css/page.css');
-    wp_enqueue_style('lightbox', get_template_directory_uri() . '/assets/css/lightbox.css');
+    wp_enqueue_style('fullscreen', get_template_directory_uri() . '/assets/css/fullscreen.css');
 
     wp_enqueue_script('script', get_template_directory_uri() . '/assets/js/script.js', array(), '1.0', true);
 }
@@ -31,6 +31,46 @@ register_nav_menus( array(
 ));
 
 
+/* fonction fullscreen */
+
+function fullscreen() {
+  /*   $query_requete_Ajax = new WP_Query([
+        'post_type' => 'photo',
+        'posts_per_page'=> 12,
+        'orderby' => 'date',
+        'order' => 'ASC',
+        'paged' => $_POST['paged'], 
+    ]); */
+
+    $response = ''; 
+
+     //if( $query_requete_Ajax->have_posts() ) :
+        //while( $query_requete_Ajax->have_posts() ) : $query_requete_Ajax->the_post();
+        $response .= '<div id="container_fullscreen">
+            <div id="box_photo">
+                <img src="" alt="" id="img-fullscreen">'.
+ 
+                    $photo_url = wp_get_attachment_image_url( $_POST['id'], 'large' ).
+
+                
+            '</div>
+            <h5> lightbox</h5>
+        </div>';
+        //endwhile;
+        //wp_reset_postdata();
+        //else :
+        //$response = '';
+        //endif;
+
+        echo $response;
+        exit;
+};
+
+add_action('wp_ajax_fullscreen', 'fullscreen');
+add_action('wp_ajax_nopriv_fullscreen', 'fullscreen');
+
+
+
 /* button_chargez_plus : load more */
 
 function load_more() {
@@ -44,17 +84,25 @@ function load_more() {
 
     $response = ''; 
 
-    if( $query_requete_Ajax->have_posts() ) : 
-        while( $query_requete_Ajax->have_posts() ) : $query_requete_Ajax->the_post(); 
-            $response .= '<a href="'. get_permalink() .'">'. get_the_post_thumbnail(null, 'medium', array('class' =>'photo_taille_accueil')) .'</a>'; 
+    if( $query_requete_Ajax->have_posts() ) :
+        while( $query_requete_Ajax->have_posts() ) : $query_requete_Ajax->the_post();
+        $response .= '<div class="container_photo_accueil" class="">
+            <img class="photo_accueil" src="'.get_the_post_thumbnail_url(get_the_ID(),"medium").'" alt="'.get_the_title().'">
+            <div class="hover_elements">
+                <a href=" "><img class="icon_fullscreen hover_icon_fullscreen" src="'.get_template_directory_uri().'/assets/images/icon_fullscreen.svg" alt="icône plein écran"> </a>
+                <a href="'.get_permalink().'"><img class="hover_icon_eye" src="'.get_template_directory_uri().'/assets/images/icon_eye.svg" alt="icône oeil"> </a>
+                <h2>'.get_field('nom').'</h2>
+                <h3>'.get_field('categorie').'</h3>
+            </div> <!-- fin hover_elements -->
+        </div> <!-- fin container_photo_accueil -->';
         endwhile;
-        wp_reset_postdata(); 
-    else :
+        wp_reset_postdata();
+        else :
         $response = '';
-    endif;
-
-    echo $response;
-    exit;
+        endif;
+        
+        echo $response;
+        exit;
 };
 
 add_action('wp_ajax_load_more', 'load_more');
@@ -67,16 +115,10 @@ function filter_by_categorie() {
         'post_type' => 'photo',
         'orderby' => 'date',
         'tax_query' => array(
-            'relation' => 'or',
             array(
                 'taxonomy' => 'categorie',
                 'field' => 'slug',
                 'terms' => $_POST['categorie'],
-            ),
-            array(
-                'taxonomy' => 'format',
-                'field' => 'slug',
-                'terms' => $_POST['format'],
             ),
         ),
     ]);
@@ -85,7 +127,15 @@ function filter_by_categorie() {
 
     if( $query_requete_Ajax->have_posts() ) : 
         while( $query_requete_Ajax->have_posts() ) : $query_requete_Ajax->the_post(); 
-            $response .= '<a href="'. get_permalink() .'">'. get_the_post_thumbnail(null, 'medium', array('class' =>'photo_taille_accueil')) .'</a>'; 
+        $response .= '<div class="container_photo_accueil" class="">
+            <img class="photo_accueil" src="'.get_the_post_thumbnail_url(get_the_ID(),"medium").'" alt="'.get_the_title().'">
+            <div class="hover_elements">
+                <a href=" "><img class="icon_fullscreen hover_icon_fullscreen" src="'.get_template_directory_uri().'/assets/images/icon_fullscreen.svg" alt="icône plein écran"> </a>
+                <a href="'.get_permalink().'"><img class="hover_icon_eye" src="'.get_template_directory_uri().'/assets/images/icon_eye.svg" alt="icône oeil"> </a>
+                <h2>'.get_field('nom').'</h2>
+                <h3>'.get_field('categorie').'</h3>
+            </div> <!-- fin hover_elements -->
+        </div> <!-- fin container_photo_accueil -->';
         endwhile;
         wp_reset_postdata(); 
     else :
@@ -106,16 +156,10 @@ function filter_by_format() {
         'post_type' => 'photo',
         'orderby' => 'date',
         'tax_query' => array(
-            'relation' => 'or',
             array(
                 'taxonomy' => 'format',
                 'field'    => 'slug',
                 'terms'    => $_POST['format'],
-            ),
-            array(
-                'taxonomy' => 'categorie',
-                'field'    => 'slug',
-                'terms'    => $_POST['categorie'],
             ),
         ),
     ]);
@@ -124,8 +168,15 @@ function filter_by_format() {
 
     if( $query_requete_Ajax->have_posts() ) : 
         while( $query_requete_Ajax->have_posts() ) : $query_requete_Ajax->the_post(); 
-        $response .= '<a href="'. get_permalink() .'">'. get_the_post_thumbnail(null, 'medium', array('class' =>'photo_taille_accueil')) .'</a>'; 
-        
+        $response .= '  <div class="container_photo_accueil" class="">
+                            <img class="photo_accueil" src="'.get_the_post_thumbnail_url(get_the_ID(),"medium").'" alt="'.get_the_title().'">
+                            <div class="hover_elements">
+                                <a href=" "><img class="icon_fullscreen hover_icon_fullscreen" src="'.get_template_directory_uri().'/assets/images/icon_fullscreen.svg" alt="icône plein écran"> </a>
+                                <a href="'.get_permalink().'"><img class="hover_icon_eye" src="'.get_template_directory_uri().'/assets/images/icon_eye.svg" alt="icône oeil"> </a>
+                                <h2>'.get_field('nom').'</h2>
+                                <h3>'.get_field('categorie').'</h3>
+                            </div> <!-- fin hover_elements -->
+                        </div> <!-- fin container_photo_accueil -->';
         endwhile;
         wp_reset_postdata(); 
     
@@ -141,5 +192,15 @@ function filter_by_format() {
 
 add_action('wp_ajax_filter_by_format', 'filter_by_format');
 add_action('wp_ajax_nopriv_filter_by_format', 'filter_by_format');
+
+
+
+
+
+function vider_le_cache() {
+    
+    wp_cache_flush();
+}
+add_action( 'wp_enqueue_scripts', 'vider_le_cache' );
 
 ?>

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    console.log('jQuery chargé');
     /* fermeture menu */
     $('.burger').click(function() {
         $('nav').toggleClass('show');
@@ -7,13 +7,24 @@ $(document).ready(function() {
     });
  
     /* plein écran  */
-   /*  $('#container_lightbox').hide(); */
+    $('#container_fullscreen').hide();
 
     /* ouverture lightbox */
-   /*  $('.icon_fullscreen').click(function(){
-        $('#container_lightbox').css('opacity','1');
-    }); */
+     $('.icon_fullscreen').click(function(e){
+      /*   console.log(e); */
+        $("#img-fullscreen").attr(
+           "src", e.target.parentElement.parentElement.children[0].src);
+
+           /* console.log('#img-fullscreen'); */
+
+        $('#container_fullscreen').show();
+        
+    }); 
     
+    $('#close_fullscreen').click(function(){
+        $('#container_fullscreen').hide();
+    })
+
     /* Modal rattaché au footer, pour qu'il soit disponible partout sur le site
     Par conséquent, il faut le cacher pour qu'il soit disponible uniquement pour le bouton contact */ 
     $('#bg-contact').hide(); 
@@ -54,6 +65,32 @@ $(document).ready(function() {
     });
 
 
+
+    /* lightbox */
+
+   /* $('.icon_fullscreen').click(function(e){
+        console.log(e.target.parentElement.parentElement.children[0].src); 
+        
+
+        $.ajax({
+            type: 'POST',
+            url: '/motaphoto/wp-admin/admin-ajax.php',
+            dataType:'html',
+            data: {
+                action: 'fullscreen', 
+                imgUrl: e.target.parentElement.parentElement.children[0].src
+            },
+            success:function (resultat){
+                $("#img-fullscreen").attr('src', resultat);
+                $("#container_fullscreen").show();
+                //console.log(resultat)
+            }
+        });
+
+
+    }); */
+
+
     /* AJAX load more */
 
     let currentPage = 1;
@@ -66,14 +103,13 @@ $(document).ready(function() {
             url: '/motaphoto/wp-admin/admin-ajax.php',
             dataType:'html',
             data: {
-                action: 'load_more',  /* récupérer format et catégorie */
+                action: 'load_more', /* nom de ma function */
                 paged: currentPage,
             },
             success:function (resultat){
                 $('#grillePhoto').append(resultat);
             }
         });
-
     });
 
 
@@ -114,7 +150,6 @@ $(document).ready(function() {
         success: function (resultat) {
           $("#grillePhoto").html(resultat);
         },
-
       });
     });
 

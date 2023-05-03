@@ -39,7 +39,6 @@
         <!-- section filter -->
         <section id="filter">
 
-
                     <div id="left_filter">
                         <!-- Catégorie -->
                         <div id="category_filter"> 
@@ -93,7 +92,7 @@
                 <div> 
                     <p>TRIER PAR</p>
                     <select name="" id="">
-                        <option value=""> Ordre chronologique </option>
+                        <option value=""> Toutes les dates </option>
                         <option value=""> Date la plus proche </option>
                         <option value=""> Date la moins proche </option>
                         <option value="">  </option>
@@ -106,7 +105,6 @@
         <section  id="grillePhoto">
            
             <?php  
-
                 // on définit les arguments que l'on souhaite récupérer
                 $photoAccueil = array(
                     'post_type' => 'photo',
@@ -120,11 +118,11 @@
 
                 // On lance la boucle 
                 if( $query_photoAccueil -> have_posts() ) : while( $query_photoAccueil -> have_posts() ) : $query_photoAccueil -> the_post(); ?>
-                    <div id ="container_photo_accueil" class="">
-                        <img id ="photo_accueil" src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title_attribute(); ?>">
-                        <div id="hover_elements">
-                            <a href=" "><img class="icon_fullscreen" id="hover_icon_fullscreen" src="<?php echo get_template_directory_uri() .'/assets/images/icon_fullscreen.svg';?>" alt="icône plein écran"> </a>
-                            <a href="<?php echo get_permalink() ?>"><img id="hover_icon_eye"  src="<?php echo get_template_directory_uri() .'/assets/images/icon_eye.svg';?>" alt="icône oeil"> </a>
+                    <div class ="container_photo_accueil" >
+                        <img class ="photo_accueil" src="<?php $photo = the_post_thumbnail_url("large"); /* var_dump($photo) */;?>" alt="<?php the_title_attribute(); ?>">
+                        <div class="hover_elements">
+                            <img class="icon_fullscreen hover_icon_fullscreen" src="<?php echo get_template_directory_uri() .'/assets/images/icon_fullscreen.svg';?>" alt="icône plein écran"> 
+                            <a href="<?php echo get_permalink() ?>"><img class="hover_icon_eye"  src="<?php echo get_template_directory_uri() .'/assets/images/icon_eye.svg';?>" alt="icône oeil"> </a>
                             <h2> <?php echo get_field('nom') ?> </h2>
                             <h3><?php echo get_field('categorie') ?></h3>
                         </div> <!-- fin hover_elements -->  
@@ -144,10 +142,5 @@
 
     </div>
    
-                <?php  
-                   /*  echo '<pre>' ;
-                    var_dump($iteration_format); 
-                    echo '</pre>'; */
-                ?>
 
 <?php get_footer() ?>
