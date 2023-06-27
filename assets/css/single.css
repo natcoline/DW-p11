@@ -55,10 +55,9 @@
     height: 100%;
     display: flex;
     align-items: flex-end;
-    background-color:coral;
+   /*  background-color:coral; */
     position: relative;
 }
-
 
 #photo_single_visuel{
     width: 100%;
@@ -116,9 +115,12 @@
 #container_image_navigation{
     width: 5.29vw; /* 77px */
     height: 4.26vw; /* 62px */
-    margin-bottom: 1.65vh;
-
-    background-color: darkorchid;
+    /* margin-top: 1vh; */
+    /* margin-bottom: 1.65vw; */
+    margin-left: 1.5vw;
+    
+/* 
+    background-color: darkorchid; */
 }
 
 .image_navigation{

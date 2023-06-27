@@ -1,12 +1,13 @@
 $(document).ready(function() {
     console.log('jQuery chargé');
-    /* fermeture menu */
+
+    /* //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\  menu burger //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\ */
     $('.burger').click(function() {
         $('nav').toggleClass('show');
         $(this).toggleClass('open');
     });
  
-    /* plein écran  */
+    /* //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\ Lightbox  //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\ */
     $('#container_fullscreen').hide();
 
     /* ouverture lightbox */
@@ -16,7 +17,6 @@ $(document).ready(function() {
            "src", e.target.parentElement.parentElement.children[0].src);
 
            /* console.log('#img-fullscreen'); */
-
         $('#container_fullscreen').show();
         
     }); 
@@ -25,34 +25,38 @@ $(document).ready(function() {
         $('#container_fullscreen').hide();
     })
 
+   
+     /* //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\ MODAL / CONTACT POPUP //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\ */
+
+
     /* Modal rattaché au footer, pour qu'il soit disponible partout sur le site
     Par conséquent, il faut le cacher pour qu'il soit disponible uniquement pour le bouton contact */ 
     $('#bg-contact').hide(); 
 
     /* Ouverture modal sur le bouton contact*/
      $('.modal-lien-contact').click(function(){
-        $('#bg-contact').show();
+            $('#bg-contact').show();
     });
 
 
     /* Fermeture modal */
+    
     $('#popup-close').click(function(){
-         $('#bg-contact').hide();
-         // nettoyer le formulaire
-         // tous les inputs = '';
+        $('#bg-contact').hide();
+        // nettoyer le formulaire
+        // tous les inputs = '';
+    
+           $form = $('#wpcf7-f25-o1');
+           $form[0].reset();
+           $form.find('.wpcf7-response-output').empty();
+         
+          /*  console.log($form); */
 
-         /* if ($('#wpcf7-f25-o1').is('form')) {
-            $('#wpcf7-f25-o1')[0].reset();
-            console.log($('#wpcf7-f25-o1'));
-        }  */
-            
-            $form = $('#wpcf7-f25-o1');
-            $form[0].reset();
-            $form.find('.wpcf7-response-output').empty();
-          
-           /*  console.log($form); */
+    });
 
-     });
+
+    /* //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\ Précharger le formulaire  //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\ */
+
 
     /* Précharger le formulaire avec la référence de la photo selectionnée */
     
@@ -66,32 +70,7 @@ $(document).ready(function() {
 
 
 
-    /* lightbox */
-
-   /* $('.icon_fullscreen').click(function(e){
-        console.log(e.target.parentElement.parentElement.children[0].src); 
-        
-
-        $.ajax({
-            type: 'POST',
-            url: '/motaphoto/wp-admin/admin-ajax.php',
-            dataType:'html',
-            data: {
-                action: 'fullscreen', 
-                imgUrl: e.target.parentElement.parentElement.children[0].src
-            },
-            success:function (resultat){
-                $("#img-fullscreen").attr('src', resultat);
-                $("#container_fullscreen").show();
-                //console.log(resultat)
-            }
-        });
-
-
-    }); */
-
-
-    /* AJAX load more */
+    /* //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\  AJAX load more  //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\ */
 
     let currentPage = 1;
 
@@ -113,47 +92,29 @@ $(document).ready(function() {
     });
 
 
-    /*  AJAX filtre categorie  */
+    /* //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\  AJAX filtre  //\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\ */
 
-    $("#select_categorie").on("change", function (e) {
-        /* console.log(e.target.value); */
-
-      $.ajax({
-        type: "POST",
-        url: "/motaphoto/wp-admin/admin-ajax.php",
-        dataType: "html",
-        data: {
-            action: "filter_by_categorie",
-            categorie: e.target.value,
-        },
-        success: function (resultat) {
-          $("#grillePhoto").html(resultat);
-        },
-
-      });
-    });
-
-
-    /* AJAX filtre format */
-
-    $("#select_format").on("change", function (e) {
-        /* console.log(e.target.value); */
+    $(".select-filter").on("change", function () {
 
       $.ajax({
         type: "POST",
         url: "/motaphoto/wp-admin/admin-ajax.php",
         dataType: "html",
         data: {
-            action: "filter_by_format",
-            format: e.target.value,
+            action: "function_filter",
+            cat: $("#select_categorie").val(),
+            for: $("#select_format").val(),
+            an: $("#select_date").val(),
         },
         success: function (resultat) {
           $("#grillePhoto").html(resultat);
         },
       });
+      console.log($("#select_categorie").val())
+      console.log($("#select_format").val())
+      console.log($("#select_date").val())
     });
-
-    
+   
 
 
     

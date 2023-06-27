@@ -1,0 +1,218 @@
+#hero{
+    width: 100%;
+    height: 100vh;
+   /*  background-color: blue; */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#hero img{  
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+   /*  z-index: -1; */
+}
+
+#hero h1{
+    position: absolute;
+    font-family:'space-mono-bold-italic';
+    font-size: 6.6vw; /* 96px */
+    -webkit-text-stroke: 2px #fff; /* pour une compatibilité avec les navigateurs webkit */
+    color: transparent;
+}
+
+/* container filter et photo */
+#container_page_accueil {
+    width: 100vw;
+    height: auto;
+    padding: 5vh 9.8vw 20.41vh 9.8vw;
+   /*  background-color: brown; */
+}
+
+/* les filtres  */
+#filter{
+    width: 100%;
+    height: auto;
+    display: flex;
+    /* background-color: blueviolet; */
+}
+
+#filter p{
+    font-family:'poppins';
+}
+
+#category_filter{
+    padding-right: 14.23vw;
+}
+
+#date_filter{
+    margin-left: 35vw;
+}
+
+/*  les photo */
+#grillePhoto{
+    width: 100%;
+    height: auto;
+    padding-top: 6vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+
+.container_photo_accueil {
+    height: 34vw; /*  495px */
+    width: 39vw;   /* 564px */
+    position: relative; /* elements hover sur photo */
+}
+
+.photo_accueil {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* hover elements photo */
+
+.hover_elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.container_photo_accueil:hover .hover_elements {
+    opacity: 1;
+}
+
+.hover_icon_eye {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4vw;
+    height: 4vw;
+}
+
+.hover_icon_fullscreen{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 4vw;
+    height: 4vw;
+}
+
+.container_photo_accueil .hover_elements h2 {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-family:'Space Mono';
+    font-size: 0.96vw;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #fff;
+}
+  
+.container_photo_accueil .hover_elements h3 {
+    font-size: 14px;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-family:'Space Mono';
+    font-size: 0.96vw;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #fff;
+}
+  
+  
+/* bouton bas de page */
+#container_button_chargez_plus{
+    width: 100%;
+    height: 19vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#button_chargez_plus{
+    width: 8.25vw;
+    height: 5.1vh;
+    background-color: #D8D8D8;
+    font-size: 0.82vw;
+    font-family:'space-mono';
+    border-radius:2px;
+    border:none;
+    cursor: pointer;
+}
+
+
+
+@media screen and (max-width: 1256px){
+    #date_filter{
+        margin-left: 30vw;
+    }
+}
+
+@media screen and (max-width: 1111px){
+    #date_filter{
+        margin-left: 28vw;
+    }
+}
+
+@media screen and (max-width: 1038px){
+    #date_filter{
+        margin-left: 22vw;
+    }
+}
+
+
+@media screen and (max-width: 980px){
+    #date_filter{
+        margin-left: 19vw;
+    }
+}
+
+
+
+@media screen and (max-width: 768px){
+    #grillePhoto{
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }    
+
+    #filter{
+        width: 100%;
+        flex-direction: column ;
+        align-items: center;
+        /* background-color: blueviolet; */
+    }
+
+    #category_filter{
+        padding-right: 0;
+    }
+    
+    #date_filter{
+        margin-left: 0;
+    }
+
+    #filter p {
+        text-align: center;
+    }
+    #filter select {
+        text-align: center;
+        margin-bottom:2vh;
+        width:80vw;
+        /* background-color: blue; */
+    }
+   
+    
+
+
+} /* fin medi querie */

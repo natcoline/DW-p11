@@ -6,6 +6,7 @@
     height: 100vh;
     background-color:rgba(0, 0, 0, 80) ;
     display: none;
+    z-index: 9999;
 }
 
 #box_photo{
@@ -20,8 +21,8 @@
 
 #close_fullscreen{
     position: absolute;
-    right: 65px;
-    top: 55px;
+    right: 4.53vw; /* 66px */
+    top: 3.98vw; /* 58px */
     cursor: pointer;
 }
 

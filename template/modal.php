@@ -1,17 +1,14 @@
 
 <div id="bg-contact"> <!-- position fixe -->
-    <div id="contact"> <!-- position fixe --> 
-        <div id="popup-contact"> <!-- position relative par rapport #popup- -->
+    <div id="popup-contact"> <!-- position fixe --> 
             <!-- titre -->
-            <img src="<?php echo get_template_directory_uri() .'/assets/images/contact.svg';?>" alt="image titre contact">
-           
-            <!-- la croix -->
-            <div id="popup-close">
-                <img src="<?php echo get_template_directory_uri() .'/assets/images/croix.png';?>" alt="croix fermeture popup contact">
-            </div>
-           
+            <img id="img-contact"src="<?php echo get_template_directory_uri() .'/assets/images/contact.svg';?>" alt="image titre contact">
+                  
             <!-- Formulaire -->
             <?php echo do_shortcode('[contact-form-7 id="25" title="Contact-motaphoto"]'); ?>
-        </div> <!-- fin div popup-contact -->
-    </div>
-</div>
+    </div> <!-- fin  popup-contact -->
+
+    <img id="popup-close" class="" src="<?php echo get_template_directory_uri(); ?>/assets/images/close_fullscreen.svg" alt="Closing Cross">
+
+</div> <!-- fin bg -->
+

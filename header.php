@@ -5,7 +5,6 @@
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <?php wp_head(); ?> 
@@ -18,7 +17,7 @@
     <header>
 
         <div class="logo">
-            <a href="#"><img src="<?php echo get_template_directory_uri() .'/assets/images/logo-NathalieMota.png';?>" alt="Logo en lettre nom de l'entreprise : Nathalie Mota"></a>
+            <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo get_template_directory_uri() .'/assets/images/logo-NathalieMota.png';?>" alt="Logo en lettre nom de l'entreprise : Nathalie Mota"></a>
         </div>
         <nav>
             <ul>

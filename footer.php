@@ -16,30 +16,6 @@
 <?php get_template_part('template/fullscreen'); ?> 
 
 
-<?php
-
-   /*  $photo_fullscreen = get_the_post_thumbnail_url(get_the_ID(), 'large'); */
-
-   
-
-    /* get_template_part(
-        'template',
-        'fullscreen',
-            $args = array(
-            'post_type'	=> 'photo',
-            'photo_id'	=> $photo_id
-         )
-    );
- */
-   /*  var_dump($photo_fullscreen);
-    var_dump($args); */
-    
-?> 
-
-
-
-
-
 
 
 
